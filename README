@@ -1,0 +1,157 @@
+README
+
+# Sancarlista Academy
+
+## Descripción
+
+Este proyecto consiste en el desarrollo de un sistema académico llamado **Sancarlista Academy**, el cual permite la gestión de usuarios, cursos, secciones, inscripciones y notas dentro de una academia.
+
+El sistema está desarrollado en **Java (Swing)** siguiendo una arquitectura tipo MVC, utilizando estructuras de datos basadas en arreglos (sin uso de `ArrayList`, `HashMap`, etc.), y con persistencia mediante serialización.
+
+---
+
+## Funcionalidades principales
+
+### 🔐 Login
+
+* Inicio de sesión por tipo de usuario:
+
+  * Administrador
+  * Instructor
+  * Estudiante
+* Registro de intentos en bitácora (exitosos y fallidos)
+
+---
+
+### 👤 Administrador
+
+* CRUD de instructores y estudiantes
+* CRUD de cursos
+* CRUD de secciones
+* Visualización de bitácora del sistema
+* Generación de reportes CSV:
+
+  * Inscripciones
+  * Rendimiento académico
+  * Top 5 mejores estudiantes
+  * Top 5 bajo desempeño
+
+---
+
+### 📚 Instructor
+
+* Gestión de notas:
+
+  * Crear
+  * Buscar
+  * Actualizar
+  * Eliminar
+* Validaciones:
+
+  * El instructor solo puede trabajar en sus secciones
+  * El estudiante debe estar inscrito
+  * Control de ponderación (no mayor a 100%)
+* Carga masiva de notas mediante CSV
+* Exportación de notas a CSV
+
+---
+
+### 🎓 Estudiante
+
+* Visualización de cursos disponibles
+* Inscripción a secciones
+* Desasignación de cursos
+* Validación de choque de horario
+* Consulta de notas y promedio
+* Visualización de estado (Aprobado/Reprobado)
+* Edición de perfil
+
+---
+
+## 🧾 Bitácora
+
+El sistema registra automáticamente:
+
+* Login exitoso y fallido
+* Creación, actualización y eliminación de:
+
+  * Usuarios
+  * Cursos
+  * Secciones
+  * Notas
+* Operaciones realizadas por cada tipo de usuario
+
+Incluye:
+
+* Filtros por usuario, tipo y operación
+* Exportación a CSV
+
+---
+
+## 📁 Carga masiva (CSV)
+
+El sistema permite importar archivos CSV para:
+
+* Instructores
+* Estudiantes
+* Cursos
+* Secciones
+* Notas
+
+---
+
+## 🧮 Cálculo de promedio
+
+Se utiliza la fórmula:
+
+Promedio = Σ (nota × ponderación) / Σ ponderación
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+* Java
+* Java Swing (interfaz gráfica)
+* Serialización (`.ser`)
+* Programación orientada a objetos
+* Manejo de archivos (CSV)
+
+---
+
+## 📂 Estructura del proyecto
+
+* `model`: clases del sistema (Usuario, Curso, Nota, etc.)
+* `view`: interfaces gráficas
+* `controller`: lógica de control
+* `system`: lógica central del sistema
+* `util`: utilidades (validaciones, CSV, bitácora)
+
+---
+
+## ⚠️ Restricciones cumplidas
+
+* No uso de `ArrayList`, `HashMap`, `List`
+* Uso de arreglos estáticos
+* Persistencia con serialización
+* Uso de hilos (simulación de concurrencia en inscripciones)
+* Arquitectura tipo MVC
+
+---
+
+## ▶️ Ejecución
+
+1. Abrir el proyecto en NetBeans
+2. Ejecutar la clase principal (`Main`)
+3. Iniciar sesión con un usuario registrado
+
+---
+
+## 👨‍💻 Autor
+
+René Toledo
+
+---
+
+## 📌 Observaciones
+
+El sistema fue desarrollado cumpliendo los requisitos del proyecto, priorizando funcionalidad, validaciones y manejo de datos. Se implementaron mejoras adicionales como bitácora detallada y reportes para enriquecer la solución.
