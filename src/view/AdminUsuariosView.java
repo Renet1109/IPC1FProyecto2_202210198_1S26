@@ -1,5 +1,9 @@
 package view;
 
+import util.LoggerBitacora;
+import system.Sesion;
+import javax.swing.JFileChooser;
+import util.CSVImporter;
 import model.Estudiante;
 import model.Instructor;
 import model.Usuario;
@@ -47,6 +51,11 @@ public class AdminUsuariosView extends JFrame {
         btnBuscar = addButton("Buscar", 130, 270);
         btnActualizar = addButton("Actualizar", 220, 270);
         btnEliminar = addButton("Eliminar", 320, 270);
+        JButton btnCSV = new JButton("Cargar CSV");
+        btnCSV.setBounds(150, 320, 140, 30);
+        add(btnCSV);
+
+        btnCSV.addActionListener(e -> cargarCSV());
 
         // Eventos
         btnCrear.addActionListener(e -> crear());
@@ -76,12 +85,31 @@ public class AdminUsuariosView extends JFrame {
         add(btn);
         return btn;
     }
+    
+    private void cargarCSV() {
+    JFileChooser chooser = new JFileChooser();
+    int opcion = chooser.showOpenDialog(this);
+
+    if (opcion == JFileChooser.APPROVE_OPTION) {
+        String ruta = chooser.getSelectedFile().getAbsolutePath();
+        String resultado;
+
+        if (tipo.equals("INSTRUCTOR")) {
+            resultado = CSVImporter.cargarInstructores(ruta);
+        } else {
+            resultado = CSVImporter.cargarEstudiantes(ruta);
+        }
+
+        JOptionPane.showMessageDialog(this, resultado);
+    }
+}
 
     // ============================
     // FUNCIONES CRUD
     // ============================
 
     private void crear() {
+        
         String codigo = txtCodigo.getText();
         String nombre = txtNombre.getText();
         String fecha = txtFecha.getText();
@@ -108,6 +136,13 @@ public class AdminUsuariosView extends JFrame {
 
         SistemaAcademy.agregarUsuario(nuevo);
         SistemaAcademy.guardarTodo();
+        LoggerBitacora.registrar(
+    "ADMIN",
+    Sesion.usuarioActual.getCodigo(),
+    "CREAR_USUARIO",
+    "EXITOSA",
+    "Usuario creado: " + codigo
+);
 
         JOptionPane.showMessageDialog(this, "Usuario creado correctamente");
         limpiar();
@@ -143,6 +178,14 @@ public class AdminUsuariosView extends JFrame {
         u.setPassword(txtPassword.getText());
 
         SistemaAcademy.guardarTodo();
+        
+        LoggerBitacora.registrar(
+    "ADMIN",
+    Sesion.usuarioActual.getCodigo(),
+    "ACTUALIZAR_USUARIO",
+    "EXITOSA",
+    "Usuario actualizado: " + codigo
+);
 
         JOptionPane.showMessageDialog(this, "Actualizado correctamente");
     }
@@ -156,6 +199,15 @@ public class AdminUsuariosView extends JFrame {
             SistemaAcademy.guardarTodo();
             JOptionPane.showMessageDialog(this, "Eliminado correctamente");
             limpiar();
+            
+            LoggerBitacora.registrar(
+    "ADMIN",
+    Sesion.usuarioActual.getCodigo(),
+    "ELIMINAR_USUARIO",
+    "EXITOSA",
+    "Usuario eliminado: " + codigo
+);
+            
         } else {
             JOptionPane.showMessageDialog(this, "No se encontró el usuario");
         }

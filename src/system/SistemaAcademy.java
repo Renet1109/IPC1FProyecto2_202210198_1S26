@@ -280,4 +280,49 @@ public static boolean eliminarNota(String codigoCurso, String codigoSeccion, Str
     }
     return false;
 }
+public static boolean estudianteTieneChoqueHorario(String codigoEstudiante, String horarioNuevo) {
+    for (int i = 0; i < totalSecciones; i++) {
+        Seccion s = secciones[i];
+
+        if (s != null && s.estaInscrito(codigoEstudiante)) {
+            if (s.getHorario().equalsIgnoreCase(horarioNuevo)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+public static double sumaPonderaciones(String codigoSeccion, String codigoEstudiante) {
+    double suma = 0;
+
+    for (int i = 0; i < totalNotas; i++) {
+        Nota n = notas[i];
+
+        if (n != null
+                && n.getCodigoSeccion().equalsIgnoreCase(codigoSeccion)
+                && n.getCodigoEstudiante().equalsIgnoreCase(codigoEstudiante)) {
+            suma += n.getPonderacion();
+        }
+    }
+
+    return suma;
+}
+
+public static double sumaPonderacionesSinEtiqueta(String codigoSeccion, String codigoEstudiante, String etiqueta) {
+    double suma = 0;
+
+    for (int i = 0; i < totalNotas; i++) {
+        Nota n = notas[i];
+
+        if (n != null
+                && n.getCodigoSeccion().equalsIgnoreCase(codigoSeccion)
+                && n.getCodigoEstudiante().equalsIgnoreCase(codigoEstudiante)
+                && !n.getEtiqueta().equalsIgnoreCase(etiqueta)) {
+            suma += n.getPonderacion();
+        }
+    }
+
+    return suma;
+}
 }

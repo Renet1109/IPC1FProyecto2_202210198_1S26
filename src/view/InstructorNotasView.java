@@ -1,5 +1,7 @@
 package view;
 
+import javax.swing.JFileChooser;
+import util.CSVImporter;
 import model.Nota;
 import system.Sesion;
 import system.SistemaAcademy;
@@ -53,6 +55,11 @@ public class InstructorNotasView extends JFrame {
         JButton btnVer = new JButton("Ver Notas");
         btnVer.setBounds(390, 190, 150, 30);
         add(btnVer);
+        JButton btnCSV = new JButton("Cargar CSV");
+        btnCSV.setBounds(390, 265, 150, 30); 
+        add(btnCSV);
+
+      btnCSV.addActionListener(e -> cargarCSV());
         
         JButton btnReporte = new JButton("Reporte CSV");
 btnReporte.setBounds(390, 230, 150, 30);
@@ -91,8 +98,21 @@ btnReporte.addActionListener(e -> {
         add(txt);
         return txt;
     }
+    
+    private void cargarCSV() {
+    JFileChooser chooser = new JFileChooser();
+    int opcion = chooser.showOpenDialog(this);
+
+    if (opcion == JFileChooser.APPROVE_OPTION) {
+        String ruta = chooser.getSelectedFile().getAbsolutePath();
+        String resultado = CSVImporter.cargarNotas(ruta, Sesion.usuarioActual.getCodigo());
+        JOptionPane.showMessageDialog(this, resultado);
+        mostrarNotas();
+    }
+}
 
     private boolean validarBase() {
+        
         if (!SistemaAcademy.instructorTieneSeccion(Sesion.usuarioActual.getCodigo(), txtSeccion.getText())) {
             JOptionPane.showMessageDialog(this, "No tienes asignada esta sección.");
             return false;
@@ -121,6 +141,13 @@ btnReporte.addActionListener(e -> {
 
     private void crear() {
         if (!validarBase()) return;
+        double nuevaPonderacion = Double.parseDouble(txtPonderacion.getText());
+double sumaActual = SistemaAcademy.sumaPonderaciones(txtSeccion.getText(), txtEstudiante.getText());
+
+if (sumaActual + nuevaPonderacion > 100) {
+    JOptionPane.showMessageDialog(this, "No puedes superar el 100% de ponderación. Actual: " + sumaActual + "%");
+    return;
+}
 
         if (SistemaAcademy.buscarNota(txtCurso.getText(), txtSeccion.getText(), txtEstudiante.getText(), txtEtiqueta.getText()) != null) {
             JOptionPane.showMessageDialog(this, "Ya existe una nota con esa etiqueta.");
@@ -159,6 +186,18 @@ btnReporte.addActionListener(e -> {
 
     private void actualizar() {
         if (!validarBase()) return;
+        
+        double nuevaPonderacion = Double.parseDouble(txtPonderacion.getText());
+double sumaSinEstaNota = SistemaAcademy.sumaPonderacionesSinEtiqueta(
+        txtSeccion.getText(),
+        txtEstudiante.getText(),
+        txtEtiqueta.getText()
+);
+
+if (sumaSinEstaNota + nuevaPonderacion > 100) {
+    JOptionPane.showMessageDialog(this, "No puedes superar el 100% de ponderación. Actual sin esta nota: " + sumaSinEstaNota + "%");
+    return;
+}
 
         Nota n = SistemaAcademy.buscarNota(txtCurso.getText(), txtSeccion.getText(), txtEstudiante.getText(), txtEtiqueta.getText());
 
@@ -171,6 +210,16 @@ btnReporte.addActionListener(e -> {
         n.setNota(Double.parseDouble(txtNota.getText()));
 
         SistemaAcademy.guardarTodo();
+        
+        LoggerBitacora.registrar(
+    "INSTRUCTOR",
+    Sesion.usuarioActual.getCodigo(),
+    "ACTUALIZAR_NOTA",
+    "EXITOSA",
+    "Nota actualizada"
+);
+        
+        
         JOptionPane.showMessageDialog(this, "Nota actualizada.");
         mostrarNotas();
     }
@@ -180,6 +229,15 @@ btnReporte.addActionListener(e -> {
 
         if (ok) {
             SistemaAcademy.guardarTodo();
+            
+            LoggerBitacora.registrar(
+    "INSTRUCTOR",
+    Sesion.usuarioActual.getCodigo(),
+    "ELIMINAR_NOTA",
+    "EXITOSA",
+    "Nota eliminada"
+);
+            
             JOptionPane.showMessageDialog(this, "Nota eliminada.");
             mostrarNotas();
         } else {

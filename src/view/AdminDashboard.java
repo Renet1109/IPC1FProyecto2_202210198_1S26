@@ -1,5 +1,7 @@
 package view;
 
+
+import view.AdminCursosView;
 import controller.LoginController;
 import system.Sesion;
 import system.SistemaAcademy;
@@ -36,9 +38,17 @@ public class AdminDashboard extends JFrame {
         btnCrearCurso.setBounds(450, 80, 140, 35);
         add(btnCrearCurso);
         
+        btnCrearCurso.addActionListener(e -> new AdminCursosView());
+        
         JButton btnReporteInscripciones = new JButton("Reporte Inscripciones");
 btnReporteInscripciones.setBounds(450, 125, 180, 35);
 add(btnReporteInscripciones);
+
+JButton btnReportes = new JButton("Reportes Académicos");
+btnReportes.setBounds(240, 185, 180, 40);
+add(btnReportes);
+
+btnReportes.addActionListener(e -> new ReportesAcademicosView());
 
 btnReporteInscripciones.addActionListener(e -> {
     boolean ok = util.ReportesCSV.reporteInscripciones();
@@ -60,13 +70,21 @@ btnBitacora.addActionListener(e -> new BitacoraView());
 btnSecciones.setBounds(250, 125, 180, 35);
 add(btnSecciones);
 
+JButton btnDev = new JButton("Datos Estudiante");
+btnDev.setBounds(430, 185, 180, 40);
+add(btnDev);
+
+btnDev.addActionListener(e -> DesarrolladorView.mostrar());
+
 btnSecciones.addActionListener(e -> new AdminSeccionesView());
 
         areaInfo = new JTextArea();
         areaInfo.setEditable(false);
 
         JScrollPane scroll = new JScrollPane(areaInfo);
-        scroll.setBounds(50, 140, 540, 180);
+        scroll.setBounds(50, 240, 560, 130);
+btnCerrarSesion.setBounds(240, 390, 180, 40);
+        
         add(scroll);
 
         btnCrearInstructor.addActionListener(e -> new AdminUsuariosView("INSTRUCTOR"));

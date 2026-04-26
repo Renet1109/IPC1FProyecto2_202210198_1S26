@@ -86,6 +86,10 @@ public class EstudianteCursosView extends JFrame {
             JOptionPane.showMessageDialog(this, "Ya estás inscrito.");
             return;
         }
+        if (SistemaAcademy.estudianteTieneChoqueHorario(Sesion.usuarioActual.getCodigo(), s.getHorario())) {
+    JOptionPane.showMessageDialog(this, "No puedes inscribirte: tienes choque de horario.");
+    return;
+}
 
         SistemaAcademy.inscripcionesPendientes++;
         boolean ok = s.inscribirEstudiante(Sesion.usuarioActual.getCodigo());

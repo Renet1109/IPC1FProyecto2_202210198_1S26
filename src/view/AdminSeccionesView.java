@@ -1,5 +1,10 @@
 package view;
 
+
+import system.Sesion;
+import util.LoggerBitacora;
+import javax.swing.JFileChooser;
+import util.CSVImporter;
 import model.Curso;
 import model.Instructor;
 import model.Seccion;
@@ -12,7 +17,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AdminSeccionesView extends JFrame {
+private void cargarCSV() {
+    JFileChooser chooser = new JFileChooser();
+    int opcion = chooser.showOpenDialog(this);
 
+    if (opcion == JFileChooser.APPROVE_OPTION) {
+        String ruta = chooser.getSelectedFile().getAbsolutePath();
+        String resultado = CSVImporter.cargarSecciones(ruta);
+        JOptionPane.showMessageDialog(this, resultado);
+    }
+}
     private JTextField txtCodigoSeccion, txtCodigoCurso, txtCodigoInstructor, txtSemestre, txtHorario;
 
     public AdminSeccionesView() {
@@ -42,6 +56,13 @@ public class AdminSeccionesView extends JFrame {
         JButton btnBuscar = addButton("Buscar", 130, 280);
         JButton btnActualizar = addButton("Actualizar", 230, 280);
         JButton btnEliminar = addButton("Eliminar", 350, 280);
+        JButton btnCSV = new JButton("Cargar CSV");
+btnCSV.setBounds(170, 320, 140, 30);
+add(btnCSV);
+
+
+
+btnCSV.addActionListener(e -> cargarCSV());
 
         btnCrear.addActionListener(e -> crear());
         btnBuscar.addActionListener(e -> buscar());
@@ -106,10 +127,19 @@ public class AdminSeccionesView extends JFrame {
         Seccion s = new Seccion(codSec, codCurso, codInstructor, semestre, horario, true);
         SistemaAcademy.agregarSeccion(s);
         SistemaAcademy.guardarTodo();
-
-        LoggerBitacora.registrar("ADMINISTRADOR", "admin", "CREAR_SECCION", "EXITOSA", "Sección " + codSec + " creada.");
+        
+        
+        LoggerBitacora.registrar(
+        "ADMIN",
+        Sesion.usuarioActual.getCodigo(),
+        "CREAR_SECCION",
+        "EXITOSA",
+        "Sección creada: " + codSec
+        );
+        
         JOptionPane.showMessageDialog(this, "Sección creada correctamente.");
         limpiar();
+        LoggerBitacora.registrar("TEST","1","TEST","OK","Probando");
     }
 
     private void buscar() {
@@ -139,6 +169,13 @@ public class AdminSeccionesView extends JFrame {
         s.setHorario(txtHorario.getText());
 
         SistemaAcademy.guardarTodo();
+        LoggerBitacora.registrar(
+    "ADMIN",
+    Sesion.usuarioActual.getCodigo(),
+    "ACTUALIZAR_SECCION",
+    "EXITOSA",
+    "Sección actualizada: " + txtCodigoSeccion.getText()
+);
         JOptionPane.showMessageDialog(this, "Sección actualizada.");
     }
 
@@ -147,6 +184,13 @@ public class AdminSeccionesView extends JFrame {
 
         if (ok) {
             SistemaAcademy.guardarTodo();
+            LoggerBitacora.registrar(
+    "ADMIN",
+    Sesion.usuarioActual.getCodigo(),
+    "ELIMINAR_SECCION",
+    "EXITOSA",
+    "Sección eliminada: " + txtCodigoSeccion.getText()
+);
             JOptionPane.showMessageDialog(this, "Sección eliminada.");
             limpiar();
         } else {

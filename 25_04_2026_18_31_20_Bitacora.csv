@@ -1,0 +1,41 @@
+FechaHora,TipoUsuario,CodigoUsuario,Operacion,Estado,Descripcion
+24/04/2026 15:44:19,DESCONOCIDO,1,LOGIN,FALLIDA,Credenciales inválidas
+24/04/2026 15:49:04,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 15:59:42,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 16:00:53,DESCONOCIDO,admin,LOGIN,FALLIDA,Credenciales inválidas
+24/04/2026 16:01:00,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 16:07:40,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 16:10:31,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 21:54:19,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 21:54:54,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 22:17:04,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 22:18:10,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 22:27:35,DESCONOCIDO,admin,LOGIN,FALLIDA,Credenciales inválidas
+24/04/2026 22:27:43,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 22:35:43,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 22:37:31,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 22:38:16,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 22:46:39,DESCONOCIDO,admin,LOGIN,FALLIDA,Credenciales inválidas
+24/04/2026 22:46:44,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 22:46:51,ADMINISTRADOR,admin,LOGOUT,EXITOSA,Cierre de sesión correcto
+24/04/2026 22:47:57,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 22:51:25,DESCONOCIDO,admin,LOGIN,FALLIDA,Credenciales inválidas
+24/04/2026 22:51:31,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 22:51:52,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+24/04/2026 22:52:19,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+25/04/2026 10:44:27,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+25/04/2026 10:45:42,ADMINISTRADOR,admin,LOGOUT,EXITOSA,Cierre de sesión correcto
+25/04/2026 10:45:47,INSTRUCTOR,02,LOGIN,EXITOSA,Inicio de sesión correcto
+25/04/2026 12:31:23,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+25/04/2026 12:40:43,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+25/04/2026 13:22:48,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+25/04/2026 15:40:15,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+25/04/2026 15:40:33,ADMINISTRADOR,admin,LOGOUT,EXITOSA,Cierre de sesión correcto
+25/04/2026 15:40:38,INSTRUCTOR,02,LOGIN,EXITOSA,Inicio de sesión correcto
+25/04/2026 18:26:48,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+25/04/2026 18:27:18,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto
+25/04/2026 18:28:37,ADMIN,admin,CREAR_USUARIO,EXITOSA,Usuario creado: 05
+25/04/2026 18:28:53,ADMINISTRADOR,admin,LOGOUT,EXITOSA,Cierre de sesión correcto
+25/04/2026 18:29:04,ESTUDIANTE,05,LOGIN,EXITOSA,Inicio de sesión correcto
+25/04/2026 18:30:46,ESTUDIANTE,05,LOGIN,EXITOSA,Inicio de sesión correcto
+25/04/2026 18:31:02,ADMINISTRADOR,admin,LOGIN,EXITOSA,Inicio de sesión correcto

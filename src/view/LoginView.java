@@ -1,5 +1,6 @@
 package view;
 
+import util.LoggerBitacora;
 import controller.LoginController;
 import model.Usuario;
 import util.Validador;
@@ -64,11 +65,28 @@ public class LoginView extends JFrame {
         Usuario usuario = controller.autenticar(codigo, password);
 
         if (usuario == null) {
-            JOptionPane.showMessageDialog(this, "Credenciales incorrectas.");
-            return;
-        }
+
+    LoggerBitacora.registrar(
+        "DESCONOCIDO",
+        codigo,
+        "LOGIN",
+        "FALLIDA",
+        "Credenciales incorrectas"
+    );
+
+    JOptionPane.showMessageDialog(this, "Credenciales incorrectas.");
+    return;
+}
 
         JOptionPane.showMessageDialog(this, "Bienvenido " + usuario.getNombre() + " (" + usuario.getTipo() + ")");
+        
+        LoggerBitacora.registrar(
+    usuario.getTipo(),
+    usuario.getCodigo(),
+    "LOGIN",
+    "EXITOSA",
+    "Inicio de sesión"
+);
 
         dispose();
 

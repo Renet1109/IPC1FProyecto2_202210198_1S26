@@ -31,7 +31,12 @@ public class InstructorDashboard extends JFrame {
         JButton btnCerrarSesion = new JButton("Cerrar Sesión");
         btnCerrarSesion.setBounds(340, 80, 180, 35);
         add(btnCerrarSesion);
+        
+        JButton btnDev = new JButton("Datos Estudiante");
+btnDev.setBounds(230, 210, 180, 35);
+add(btnDev);
 
+btnDev.addActionListener(e -> DesarrolladorView.mostrar());
         areaInfo = new JTextArea();
         areaInfo.setEditable(false);
 

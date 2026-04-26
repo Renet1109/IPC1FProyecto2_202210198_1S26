@@ -32,10 +32,24 @@ public class EstudianteDashboard extends JFrame {
         btnNotas.setBounds(230, 120, 180, 35);
         add(btnNotas);
         btnNotas.addActionListener(e -> new EstudianteNotasView());
+        
+        JButton btnDev = new JButton("Datos Estudiante");
+btnDev.setBounds(230, 210, 180, 35);
+add(btnDev);
+
+btnDev.addActionListener(e -> DesarrolladorView.mostrar());
 
         JButton btnCerrarSesion = new JButton("Cerrar Sesión");
         btnCerrarSesion.setBounds(340, 80, 180, 35);
         add(btnCerrarSesion);
+        
+        
+        
+        JButton btnPerfil = new JButton("Mi Perfil");
+btnPerfil.setBounds(230, 165, 180, 35);
+add(btnPerfil);
+
+btnPerfil.addActionListener(e -> new EstudiantePerfilView());
 
         areaInfo = new JTextArea();
         areaInfo.setEditable(false);
